@@ -8,11 +8,14 @@ from rest_framework.generics import (
 )
 
 from electronics.models import Product, NetworkElectronics
+from electronics.paginations import ElectronicsPagination
 
 from electronics.serializers import (
     NetworkElectronicsSerializer,
     ProductSerializer,
+    NetworkElectronicsDetailSerializer,
 )
+from users.permissions import IsActiveEmployee
 
 
 class NetworkElectronicsCreateAPIView(CreateAPIView):
@@ -20,7 +23,7 @@ class NetworkElectronicsCreateAPIView(CreateAPIView):
 
     queryset = NetworkElectronics.objects.all()
     serializer_class = NetworkElectronicsSerializer
-
+    permission_classes = [IsActiveEmployee]
 
 
 class NetworkElectronicsListAPIView(ListAPIView):
@@ -28,10 +31,14 @@ class NetworkElectronicsListAPIView(ListAPIView):
 
     queryset = NetworkElectronics.objects.all()
     serializer_class = NetworkElectronicsSerializer
+    permission_classes = [IsActiveEmployee]
+    pagination_class = ElectronicsPagination
 
-    # Создаем фильтр-поиск по городу
+    # Создаем фильтр-поиск по стране
     filter_backends = [filters.SearchFilter]
-    search_fields = ['city']
+    search_fields = [
+        "country",
+    ]
 
 
 class NetworkElectronicsUpdateAPIView(UpdateAPIView):
@@ -39,13 +46,15 @@ class NetworkElectronicsUpdateAPIView(UpdateAPIView):
 
     queryset = NetworkElectronics.objects.all()
     serializer_class = NetworkElectronicsSerializer
+    permission_classes = [IsActiveEmployee]
 
 
 class NetworkElectronicsRetrieveAPIView(RetrieveAPIView):
     """Выводим одну организацию."""
 
     queryset = NetworkElectronics.objects.all()
-    serializer_class = NetworkElectronicsSerializer
+    serializer_class = NetworkElectronicsDetailSerializer
+    permission_classes = [IsActiveEmployee]
 
 
 class NetworkElectronicsDestroyAPIView(DestroyAPIView):
@@ -53,6 +62,7 @@ class NetworkElectronicsDestroyAPIView(DestroyAPIView):
 
     queryset = NetworkElectronics.objects.all()
     serializer_class = NetworkElectronicsSerializer
+    permission_classes = [IsActiveEmployee]
 
 
 class ProductCreateAPIView(CreateAPIView):
@@ -60,12 +70,16 @@ class ProductCreateAPIView(CreateAPIView):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsActiveEmployee]
 
 
 class ProductListAPIView(ListAPIView):
     """Выводим список всех продуктов."""
+
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsActiveEmployee]
+    pagination_class = ElectronicsPagination
 
 
 class ProductUpdateAPIView(UpdateAPIView):
@@ -73,6 +87,7 @@ class ProductUpdateAPIView(UpdateAPIView):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsActiveEmployee]
 
 
 class ProductRetrieveAPIView(RetrieveAPIView):
@@ -80,6 +95,7 @@ class ProductRetrieveAPIView(RetrieveAPIView):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsActiveEmployee]
 
 
 class ProductDestroyAPIView(DestroyAPIView):
@@ -87,3 +103,4 @@ class ProductDestroyAPIView(DestroyAPIView):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsActiveEmployee]
