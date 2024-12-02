@@ -8,44 +8,203 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='Введите название товара', max_length=100, verbose_name='Название товара')),
-                ('model', models.CharField(blank=True, help_text='Введите модель товара', max_length=100, null=True, verbose_name='Модель')),
-                ('release_date', models.DateField(blank=True, help_text='Введите дату выпуска товара', null=True, verbose_name='Дата выпуска')),
-                ('image', models.ImageField(blank=True, help_text='Загрузите изображение товара', null=True, upload_to='photo/product/', verbose_name='Изображение товара')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        help_text="Введите название товара",
+                        max_length=100,
+                        verbose_name="Название товара",
+                    ),
+                ),
+                (
+                    "model",
+                    models.CharField(
+                        blank=True,
+                        help_text="Введите модель товара",
+                        max_length=100,
+                        null=True,
+                        verbose_name="Модель",
+                    ),
+                ),
+                (
+                    "release_date",
+                    models.DateField(
+                        blank=True,
+                        help_text="Введите дату выпуска товара",
+                        null=True,
+                        verbose_name="Дата выпуска",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        blank=True,
+                        help_text="Загрузите изображение товара",
+                        null=True,
+                        upload_to="photo/product/",
+                        verbose_name="Изображение товара",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Продукт',
-                'verbose_name_plural': 'Продукты',
+                "verbose_name": "Продукт",
+                "verbose_name_plural": "Продукты",
             },
         ),
         migrations.CreateModel(
-            name='NetworkElectronics',
+            name="NetworkElectronics",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(help_text='Введите название организации', max_length=100, verbose_name='Название организации')),
-                ('email', models.EmailField(help_text='Введите адрес электронной почты', max_length=254, unique=True, verbose_name='Адрес электронной почты')),
-                ('country', models.CharField(blank=True, help_text='Введите название страны', max_length=100, null=True, verbose_name='Страна')),
-                ('city', models.CharField(blank=True, help_text='Введите название города', max_length=100, null=True, verbose_name='Город')),
-                ('street', models.CharField(blank=True, help_text='Введите название улицы', max_length=100, null=True, verbose_name='Улица')),
-                ('house_number', models.CharField(blank=True, help_text='Введите номер дома', max_length=10, null=True, verbose_name='Номер дома')),
-                ('link_type', models.CharField(choices=[('FACTORY', 'Завод'), ('RETAIL_NETWORK', 'Розничная сеть'), ('INDIVIDUAL_ENTREPRENEUR', 'Индивидуальный предприниматель')], help_text='Выберите тип организации', max_length=100, verbose_name='Тип организации')),
-                ('duty', models.DecimalField(blank=True, decimal_places=2, help_text='Введите задолженность перед поставщиком', max_digits=12, null=True, verbose_name='Задолженность перед поставщиком')),
-                ('created_date', models.DateTimeField(auto_now_add=True, help_text='Дата создания записи заполняется автоматически', verbose_name='Дата создания записи')),
-                ('level', models.PositiveIntegerField(blank=True, help_text='Укажите уровень звена от 0 до 2', null=True, verbose_name='Уровень звена')),
-                ('products', models.ManyToManyField(blank=True, help_text='Выберите продукты', null=True, to='electronics.product', verbose_name='Продукты')),
-                ('supplier', models.ForeignKey(blank=True, default=None, help_text='Укажите поставщика', null=True, on_delete=django.db.models.deletion.SET_DEFAULT, to='electronics.networkelectronics', verbose_name='Поставщик')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        help_text="Введите название организации",
+                        max_length=100,
+                        verbose_name="Название организации",
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        help_text="Введите адрес электронной почты",
+                        max_length=254,
+                        unique=True,
+                        verbose_name="Адрес электронной почты",
+                    ),
+                ),
+                (
+                    "country",
+                    models.CharField(
+                        blank=True,
+                        help_text="Введите название страны",
+                        max_length=100,
+                        null=True,
+                        verbose_name="Страна",
+                    ),
+                ),
+                (
+                    "city",
+                    models.CharField(
+                        blank=True,
+                        help_text="Введите название города",
+                        max_length=100,
+                        null=True,
+                        verbose_name="Город",
+                    ),
+                ),
+                (
+                    "street",
+                    models.CharField(
+                        blank=True,
+                        help_text="Введите название улицы",
+                        max_length=100,
+                        null=True,
+                        verbose_name="Улица",
+                    ),
+                ),
+                (
+                    "house_number",
+                    models.CharField(
+                        blank=True,
+                        help_text="Введите номер дома",
+                        max_length=10,
+                        null=True,
+                        verbose_name="Номер дома",
+                    ),
+                ),
+                (
+                    "link_type",
+                    models.CharField(
+                        choices=[
+                            ("FACTORY", "Завод"),
+                            ("RETAIL_NETWORK", "Розничная сеть"),
+                            (
+                                "INDIVIDUAL_ENTREPRENEUR",
+                                "Индивидуальный предприниматель",
+                            ),
+                        ],
+                        help_text="Выберите тип организации",
+                        max_length=100,
+                        verbose_name="Тип организации",
+                    ),
+                ),
+                (
+                    "duty",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Введите задолженность перед поставщиком",
+                        max_digits=12,
+                        null=True,
+                        verbose_name="Задолженность перед поставщиком",
+                    ),
+                ),
+                (
+                    "created_date",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        help_text="Дата создания записи заполняется автоматически",
+                        verbose_name="Дата создания записи",
+                    ),
+                ),
+                (
+                    "level",
+                    models.PositiveIntegerField(
+                        blank=True,
+                        help_text="Укажите уровень звена от 0 до 2",
+                        null=True,
+                        verbose_name="Уровень звена",
+                    ),
+                ),
+                (
+                    "products",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="Выберите продукты",
+                        null=True,
+                        to="electronics.product",
+                        verbose_name="Продукты",
+                    ),
+                ),
+                (
+                    "supplier",
+                    models.ForeignKey(
+                        blank=True,
+                        default=None,
+                        help_text="Укажите поставщика",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_DEFAULT,
+                        to="electronics.networkelectronics",
+                        verbose_name="Поставщик",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Организация',
-                'verbose_name_plural': 'Организации',
+                "verbose_name": "Организация",
+                "verbose_name_plural": "Организации",
             },
         ),
     ]

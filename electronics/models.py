@@ -1,6 +1,6 @@
 from django.db import models
 
-NULLABLE = {'blank': True, 'null': True}
+NULLABLE = {"blank": True, "null": True}
 
 
 class Product(models.Model):
@@ -8,30 +8,30 @@ class Product(models.Model):
 
     title = models.CharField(
         max_length=100,
-        verbose_name='Название товара',
-        help_text='Введите название товара',
+        verbose_name="Название товара",
+        help_text="Введите название товара",
     )
     model = models.CharField(
         max_length=100,
-        verbose_name='Модель',
-        help_text='Введите модель товара',
+        verbose_name="Модель",
+        help_text="Введите модель товара",
         **NULLABLE,
-        )
+    )
     release_date = models.DateField(
-        verbose_name='Дата выпуска',
-        help_text='Введите дату выпуска товара',
+        verbose_name="Дата выпуска",
+        help_text="Введите дату выпуска товара",
         **NULLABLE,
     )
     image = models.ImageField(
-        verbose_name='Изображение товара',
-        help_text='Загрузите изображение товара',
-        upload_to='photo/product/',
+        verbose_name="Изображение товара",
+        help_text="Загрузите изображение товара",
+        upload_to="photo/product/",
         **NULLABLE,
     )
 
     class Meta:
-        verbose_name = 'Продукт'
-        verbose_name_plural = 'Продукты'
+        verbose_name = "Продукт"
+        verbose_name_plural = "Продукты"
 
     def __str__(self):
         return self.title
@@ -44,7 +44,6 @@ class NetworkElectronics(models.Model):
         FACTORY = "FC", "Завод"
         RETAIL_NETWORK = "RN", "Розничная сеть"
         INDIVIDUAL_ENTREPRENEUR = "IE", "Индивидуальный предприниматель"
-
 
     name = models.CharField(
         max_length=100,
@@ -87,11 +86,11 @@ class NetworkElectronics(models.Model):
         help_text="Выберите тип организации",
     )
     supplier = models.ForeignKey(
-    'self',
+        "self",
         default=None,
         on_delete=models.SET_DEFAULT,
-        verbose_name='Поставщик',
-        help_text='Укажите поставщика',
+        verbose_name="Поставщик",
+        help_text="Укажите поставщика",
         **NULLABLE,
     )
     duty = models.DecimalField(

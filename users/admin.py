@@ -4,4 +4,7 @@ from users.models import User
 
 @admin.register(User)
 class User(admin.ModelAdmin):
-    list_filter = ('id', 'email',)
+    list_filter = (
+        "id",
+        "email",
+    )
