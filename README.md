@@ -1,6 +1,6 @@
 ## Описание проекта
 
-Electronics retail chain  — это Backend-часть онлайн платформу-торговой сети электроники.
+Electronics retail chain  — это Backend-часть онлайн платформы-торговой сети электроники.
 
 Он разработан с использованием Django и Django REST Framework. 
 
